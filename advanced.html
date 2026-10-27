@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Rozšířené vyhledávání</title>
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- Horní navigační lišta ve stylu Google Advanced Search -->
+  <header class="adv-header-bar">
+    <a href="index.html" class="adv-logo-link" title="Google Domů">
+      <img src="images/googlelogo.png" alt="Google" width="92" height="32">
+    </a>
+    <nav class="google-header-links" aria-label="Navigace stránek">
+      <a href="index.html" class="nav-link">Vyhledávání</a>
+      <a href="image.html" class="nav-link">Obrázky</a>
+      <a href="forms.html" class="nav-link">Ukázka formulářů</a>
+      <a href="https://dominiksramek.github.io" class="nav-link" target="_blank" rel="noopener">Portfolio</a>
+      <a href="https://accounts.google.com/ServiceLogin?hl=cs" class="btn-signin" target="_blank" rel="noopener">Přihlásit se</a>
+    </nav>
+  </header>
+
+  <!-- Nadpis stránky v Google červené barvě -->
+  <div class="adv-page-title-container">
+    <h1 class="adv-page-title">Rozšířené vyhledávání</h1>
+  </div>
+  <hr class="adv-divider">
+
+  <!-- Hlavní obsah formuláře dle specifikace CS50 -->
+  <main class="adv-container">
+    <h2 class="adv-section-title">Stránky můžete vyhledat podle těchto kritérií:</h2>
+
+    <form action="https://google.com/search" method="GET" class="adv-form">
+      <!-- 1. Všechna tato slova: as_q -->
+      <div class="adv-row">
+        <div class="adv-label-col">
+          <label for="as_q">všechna tato slova:</label>
+        </div>
+        <div class="adv-input-col">
+          <input type="text" id="as_q" name="as_q" class="adv-input" autofocus autocomplete="off">
+        </div>
+        <div class="adv-help-col">
+          Zadejte důležitá slova: <code>triréma triéra</code>
+        </div>
+      </div>
+
+      <!-- 2. Přesně toto slovo nebo sousloví: as_epq -->
+      <div class="adv-row">
+        <div class="adv-label-col">
+          <label for="as_epq">přesně toto slovo nebo sousloví:</label>
+        </div>
+        <div class="adv-input-col">
+          <input type="text" id="as_epq" name="as_epq" class="adv-input" autocomplete="off">
+        </div>
+        <div class="adv-help-col">
+          Přesná slova vložte do uvozovek: <code>"hladkosrstý retrívr"</code>
+        </div>
+      </div>
+
+      <!-- 3. Libovolné z těchto slov: as_oq -->
+      <div class="adv-row">
+        <div class="adv-label-col">
+          <label for="as_oq">libovolné z těchto slov:</label>
+        </div>
+        <div class="adv-input-col">
+          <input type="text" id="as_oq" name="as_oq" class="adv-input" autocomplete="off">
+        </div>
+        <div class="adv-help-col">
+          Mezi slova, která chcete vyhledat, vložte OR: <code>miniaturní OR standardní</code>
+        </div>
+      </div>
+
+      <!-- 4. Žádné z těchto slov: as_eq -->
+      <div class="adv-row">
+        <div class="adv-label-col">
+          <label for="as_eq">žádné z těchto slov:</label>
+        </div>
+        <div class="adv-input-col">
+          <input type="text" id="as_eq" name="as_eq" class="adv-input" autocomplete="off">
+        </div>
+        <div class="adv-help-col">
+          Před slova, která nechcete vyhledat, vložte znaménko mínus: <code>-hlodavec, -"morče divoké"</code>
+        </div>
+      </div>
+
+      <!-- Modré tlačítko zarovnané doleva podle CS50 specifikace -->
+      <div class="adv-button-row">
+        <button type="submit" class="btn-adv-blue">Rozšířené vyhledávání</button>
+      </div>
+    </form>
+  </main>
+
+  <!-- Spodní lišta (Patička) -->
+  <footer class="google-footer">
+    <div class="footer-location">
+      <span>Česko</span>
+    </div>
+    <div class="footer-links-container">
+      <div class="footer-links-group">
+        <!-- Společné prvky -->
+        <a href="https://dominiksramek.github.io" target="_blank" rel="noopener" class="highlight-link" title="Osobní portfolio autora">Portfolio: dominiksramek.github.io</a>
+        <a href="citace.md" class="highlight-link" title="Použité zdroje a prompty">citace.md</a>
+        <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fdominiksramek.github.io%2Fgooglesearch%2Fadvanced.html" target="_blank" rel="noopener" title="W3C Validace HTML pro tuto stránku">HTML Validace</a>
+        <a href="https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fdominiksramek.github.io%2Fgooglesearch%2Fstyles.css" target="_blank" rel="noopener" title="W3C Validace CSS stylů">CSS Validace</a>
+      </div>
+      <div class="footer-links-group">
+        <a href="https://about.google/?utm_source=google-CZ&amp;utm_medium=referral&amp;utm_campaign=hp-footer" target="_blank" rel="noopener">O Google</a>
+        <a href="https://policies.google.com/privacy?hl=cs" target="_blank" rel="noopener">Ochrana soukromí</a>
+        <a href="https://policies.google.com/terms?hl=cs" target="_blank" rel="noopener">Smluvní podmínky</a>
+        <a href="https://www.google.com/preferences?hl=cs" target="_blank" rel="noopener">Nastavení</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

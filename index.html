@@ -1,12 +1,175 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Search</title>
-    </head>
-    <body>
-        <form action="https://google.com/search">
-            <input type="text" name="q">
-            <input type="submit" value="Google Search">
-        </form>
-    </body>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google</title>
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- Horní navigační lišta -->
+  <header class="google-header">
+    <a href="image.html" class="nav-link">Obrázky</a>
+    <a href="advanced.html" class="nav-link">Rozšířené vyhledávání</a>
+    <a href="forms.html" class="nav-link">Ukázka formulářů</a>
+    <a href="https://dominiksramek.github.io" class="nav-link" target="_blank" rel="noopener">Portfolio</a>
+    
+    <!-- Tlačítko pro otevření Google Aplikací (9 teček) -->
+    <div class="header-apps-wrapper">
+      <button type="button" class="header-icon-btn" id="btn-apps" aria-label="Aplikace Google" title="Aplikace Google" aria-haspopup="true" aria-expanded="false">
+        <svg focusable="false" viewBox="0 0 24 24">
+          <path d="M6,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM16,6c0,1.1 0.9,2 2,2s2,-0.9 2,-2 -0.9,-2 -2,-2 -2,0.9 -2,2zM12,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2z"></path>
+        </svg>
+      </button>
+
+      <!-- Interaktivní nabídka Google aplikací -->
+      <div class="google-apps-dropdown" id="google-apps-menu" role="menu" aria-label="Nabídka Google aplikací">
+        <div class="apps-grid">
+          <a href="index.html" class="app-item" role="menuitem">
+            <span class="app-icon">
+              <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            </span>
+            <span>Vyhledávání</span>
+          </a>
+          <a href="https://maps.google.com" target="_blank" rel="noopener" class="app-item" role="menuitem">
+            <span class="app-icon">
+              <svg viewBox="0 0 24 24"><path fill="#34A853" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </span>
+            <span>Mapy</span>
+          </a>
+          <a href="https://www.youtube.com" target="_blank" rel="noopener" class="app-item" role="menuitem">
+            <span class="app-icon">
+              <svg viewBox="0 0 24 24"><path fill="#EA4335" d="M21.58 7.19c-.23-.86-.91-1.54-1.77-1.77C18.25 5 12 5 12 5s-6.25 0-7.81.42c-.86.23-1.54.91-1.77 1.77C2 8.75 2 12 2 12s0 3.25.42 4.81c.23.86.91 1.54 1.77 1.77C5.75 19 12 19 12 19s6.25 0 7.81-.42c.86-.23 1.54-.91 1.77-1.77C22 15.25 22 12 22 12s0-3.25-.42-4.81zM10 15V9l5.2 3-5.2 3z"/></svg>
+            </span>
+            <span>YouTube</span>
+          </a>
+          <a href="https://news.google.com" target="_blank" rel="noopener" class="app-item" role="menuitem">
+            <span class="app-icon">
+              <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-5 14H4v-4h11v4zm0-5H4V9h11v4zm5 5h-4V9h4v9z"/></svg>
+            </span>
+            <span>Zprávy</span>
+          </a>
+          <a href="https://mail.google.com" target="_blank" rel="noopener" class="app-item" role="menuitem">
+            <span class="app-icon">
+              <svg viewBox="0 0 24 24"><path fill="#EA4335" d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </span>
+            <span>Gmail</span>
+          </a>
+          <a href="https://drive.google.com" target="_blank" rel="noopener" class="app-item" role="menuitem">
+            <span class="app-icon">
+              <svg viewBox="0 0 24 24"><path fill="#FBBC05" d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg>
+            </span>
+            <span>Disk</span>
+          </a>
+          <a href="https://calendar.google.com" target="_blank" rel="noopener" class="app-item" role="menuitem">
+            <span class="app-icon">
+              <svg viewBox="0 0 24 24"><path fill="#4285F4" d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5z"/></svg>
+            </span>
+            <span>Kalendář</span>
+          </a>
+          <a href="https://translate.google.com" target="_blank" rel="noopener" class="app-item" role="menuitem">
+            <span class="app-icon">
+              <svg viewBox="0 0 24 24"><path fill="#1A73E8" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
+            </span>
+            <span>Překladač</span>
+          </a>
+          <a href="https://photos.google.com" target="_blank" rel="noopener" class="app-item" role="menuitem">
+            <span class="app-icon">
+              <svg viewBox="0 0 24 24"><path fill="#EA4335" d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>
+            </span>
+            <span>Fotky</span>
+          </a>
+        </div>
+        <div class="apps-dropdown-footer">
+          <a href="https://about.google/products/" target="_blank" rel="noopener">Další služby od Googlu</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Funkční odkaz na přihlášení do Google účtu -->
+    <a href="https://accounts.google.com/ServiceLogin?hl=cs" class="btn-signin" target="_blank" rel="noopener">Přihlásit se</a>
+  </header>
+
+  <!-- Hlavní sekce vyhledávání -->
+  <main class="main-search-container">
+    <div class="logo-wrapper">
+      <img src="images/googlelogo.png" alt="Google" class="google-logo" width="272" height="92">
+    </div>
+
+    <!-- Klasické vyhledávání Google odesílající na https://google.com/search (name="q") -->
+    <form action="https://google.com/search" method="GET" class="search-form" id="search-form">
+      <!-- Zvýrazněný a ohraničený vyhledávací bar -->
+      <div class="search-box">
+        <!-- Aktivní klikací tlačítko lupy pro odeslání -->
+        <button type="submit" class="search-icon-btn" aria-label="Hledat Googlem" title="Hledat Googlem">
+          <svg focusable="false" viewBox="0 0 24 24">
+            <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+          </svg>
+        </button>
+
+        <input type="text" name="q" id="search-input" class="search-input" aria-label="Hledat v Google" autofocus autocomplete="off">
+
+        <div class="search-icons-right">
+          <!-- Hlasové vyhledávání - funkční přes Web Speech API -->
+          <button type="button" class="search-action-icon" id="btn-mic" aria-label="Vyhledávat hlasem" title="Vyhledávat hlasem">
+            <svg focusable="false" viewBox="0 0 24 24">
+              <path fill="#4285f4" d="m12 15c1.66 0 3-1.31 3-2.97v-7.02c0-1.66-1.34-3.01-3-3.01s-3 1.34-3 3.01v7.02c0 1.66 1.34 2.97 3 2.97z"></path>
+              <path fill="#34a853" d="m11 18.08h2v3.92h-2z"></path>
+              <path fill="#fbbc05" d="m7.05 16.87-1.4-1.4c-1.02-1.02-1.65-2.42-1.65-3.97h2c0 1 .41 1.9 1.05 2.54z"></path>
+              <path fill="#ea4335" d="m12 16.93a4.963 4.963 0 0 1 -3.54-1.46l-1.41 1.41a6.967 6.967 0 0 0 9.9 0l-1.41-1.41c-.96.93-2.25 1.46-3.54 1.46z"></path>
+            </svg>
+          </button>
+          <!-- Google Lens - funkční otevření služby Google Lens -->
+          <button type="button" class="search-action-icon" id="btn-lens" aria-label="Vyhledávat podle obrázku" title="Vyhledávat podle obrázku (Google Lens)">
+            <svg focusable="false" viewBox="0 0 192 192">
+              <rect fill="none" width="192" height="192"></rect>
+              <path fill="#4285f4" d="M141.5 50.5C141.5 39.45 132.55 30.5 121.5 30.5H100V49.5H121.5C122.05 49.5 122.5 49.95 122.5 50.5V72H141.5V50.5Z"></path>
+              <path fill="#ea4335" d="M121.5 142.5C122.05 142.5 122.5 142.05 122.5 141.5V120H141.5V141.5C141.5 152.55 132.55 161.5 121.5 161.5H100V142.5H121.5Z"></path>
+              <path fill="#fbbc05" d="M50.5 141.5C49.95 141.5 49.5 142.05 49.5 142.5V120H30.5V141.5C30.5 152.55 39.45 161.5 50.5 161.5H72V142.5H50.5Z"></path>
+              <path fill="#4285f4" d="M96 68C80.54 68 68 80.54 68 96C68 111.46 80.54 124 96 124C111.46 124 124 111.46 124 96C124 80.54 111.46 68 96 68ZM96 106C90.48 106 86 101.52 86 96C86 90.48 90.48 86 96 86C101.52 86 106 90.48 106 96C106 101.52 101.52 106 96 106Z"></path>
+              <path fill="#34a853" d="M49.5 50.5C49.5 49.95 49.95 49.5 50.5 49.5H72V30.5H50.5C39.45 30.5 30.5 39.45 30.5 50.5V72H49.5V50.5Z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Tlačítka vyhledávání: plně funkční pro odeslání a Zkusím mít štěstí -->
+      <div class="search-buttons">
+        <button type="submit" class="btn-google" id="btn-search">Hledat Googlem</button>
+        <button type="submit" name="btnI" value="1" class="btn-google" id="btn-lucky">Zkusím mít štěstí</button>
+      </div>
+    </form>
+
+    <div class="language-bar">
+      Google nabízený v jazycích: 
+      <a href="https://www.google.com/setprefs?hl=cs">Čeština</a>
+      <a href="https://www.google.com/setprefs?hl=sk">Slovenčina</a>
+      <a href="https://www.google.com/setprefs?hl=en">English</a>
+    </div>
+  </main>
+
+  <!-- Spodní lišta (Patička) -->
+  <footer class="google-footer">
+    <div class="footer-location">
+      <span>Česko</span>
+    </div>
+    <div class="footer-links-container">
+      <div class="footer-links-group">
+        <!-- Požadované společné prvky -->
+        <a href="https://dominiksramek.github.io" target="_blank" rel="noopener" class="highlight-link" title="Osobní portfolio autora">Portfolio: dominiksramek.github.io</a>
+        <a href="citace.md" class="highlight-link" title="Použité zdroje a prompty">citace.md</a>
+        <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fdominiksramek.github.io%2Fgooglesearch%2Findex.html" target="_blank" rel="noopener" title="W3C Validace HTML pro tuto stránku">HTML Validace</a>
+        <a href="https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fdominiksramek.github.io%2Fgooglesearch%2Fstyles.css" target="_blank" rel="noopener" title="W3C Validace CSS stylů">CSS Validace</a>
+      </div>
+      <div class="footer-links-group">
+        <a href="https://about.google/?utm_source=google-CZ&amp;utm_medium=referral&amp;utm_campaign=hp-footer" target="_blank" rel="noopener">O Google</a>
+        <a href="https://policies.google.com/privacy?hl=cs" target="_blank" rel="noopener">Ochrana soukromí</a>
+        <a href="https://policies.google.com/terms?hl=cs" target="_blank" rel="noopener">Smluvní podmínky</a>
+        <a href="https://www.google.com/preferences?hl=cs" target="_blank" rel="noopener">Nastavení</a>
+      </div>
+    </div>
+  </footer>
+</body>
 </html>

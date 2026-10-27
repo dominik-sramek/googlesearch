@@ -1,0 +1,893 @@
+/* ==========================================================================
+   Google Search Clone - CSS Stylesheet
+   Autor: Dominik Šrámek (https://dominiksramek.github.io)
+   Projekt: Frontend klon Google vyhledávače (PVA 3.D)
+   Popis: Styly věrně napodobující vzhled skutečného vyhledávače Google
+   ========================================================================== */
+
+/* --- Reset & Základní nastavení --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --google-blue: #1a73e8;
+  --google-blue-hover: #1557b0;
+  --google-blue-light: #e8f0fe;
+  --google-red: #d93025;
+  --google-yellow: #f9ab00;
+  --google-green: #1e8e3e;
+  --text-primary: #202124;
+  --text-secondary: #5f6368;
+  --text-subtle: #70757a;
+  --bg-primary: #ffffff;
+  --bg-footer: #f2f2f2;
+  --bg-btn: #f8f9fa;
+  --border-light: #dadce0;
+  --border-search: #9aa0a6; /* Zvýrazněný rámeček s vysokým kontrastem */
+  --shadow-search: 0 1px 6px rgba(32, 33, 36, 0.20); /* Stálý stín pro skvělou viditelnost */
+  --shadow-search-hover: 0 2px 8px rgba(32, 33, 36, 0.32);
+  --shadow-card: 0 1px 3px rgba(60, 64, 67, 0.15), 0 1px 2px rgba(60, 64, 67, 0.3);
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+a {
+  color: var(--google-blue);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* --- Horní lišta (Header) --- */
+.google-header {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 12px 24px;
+  gap: 16px;
+  font-size: 13px;
+}
+
+.google-header-left {
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.google-header a.nav-link {
+  color: rgba(0, 0, 0, 0.87);
+  text-decoration: none;
+  padding: 6px 8px;
+  border-radius: 4px;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.google-header a.nav-link:hover {
+  text-decoration: underline;
+  background-color: rgba(60, 64, 67, 0.04);
+}
+
+.google-header a.nav-link.active {
+  font-weight: 600;
+  color: var(--google-blue);
+}
+
+/* Tlačítko Google aplikací (9 teček) */
+.header-apps-wrapper {
+  position: relative;
+}
+
+.header-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: var(--text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.header-icon-btn:hover,
+.header-icon-btn:focus {
+  background-color: rgba(60, 64, 67, 0.08);
+  outline: none;
+}
+
+.header-icon-btn svg {
+  fill: currentColor;
+  width: 20px;
+  height: 20px;
+}
+
+/* Tlačítko Přihlásit se */
+.btn-signin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--google-blue);
+  color: #ffffff !important;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 9px 22px;
+  border-radius: 4px;
+  text-decoration: none !important;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-signin:hover {
+  background-color: var(--google-blue-hover);
+  box-shadow: 0 1px 3px rgba(60, 64, 67, 0.3);
+}
+
+/* Interaktivní nabídka Google Aplikací (Dropdown Menu) */
+.google-apps-dropdown {
+  display: none;
+  position: absolute;
+  top: 54px;
+  right: 16px;
+  width: 320px;
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(32, 33, 36, 0.28);
+  padding: 16px 14px;
+  z-index: 1000;
+}
+
+.google-apps-dropdown.show {
+  display: block;
+}
+
+.apps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.app-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 4px;
+  border-radius: 8px;
+  text-decoration: none !important;
+  color: var(--text-primary);
+  font-size: 12px;
+  transition: background-color 0.15s ease;
+}
+
+.app-item:hover {
+  background-color: #f1f3f4;
+}
+
+.app-icon {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.apps-dropdown-footer {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid #ebebeb;
+  text-align: center;
+}
+
+.apps-dropdown-footer a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--google-blue);
+}
+
+/* --- Hlavní obsah - Vyhledávání (index.html, image.html) --- */
+.main-search-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 16px;
+  margin-top: -50px;
+}
+
+.logo-wrapper {
+  margin-bottom: 26px;
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.google-logo {
+  max-width: 272px;
+  height: auto;
+  display: block;
+}
+
+.images-subscript {
+  position: absolute;
+  bottom: 0;
+  right: -5px;
+  color: #4285f4;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.search-form {
+  width: 100%;
+  max-width: 584px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ZVÝRAZNĚNÝ VYHLEDÁVACÍ BAR */
+.search-box {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  border: 1.5px solid var(--border-search); /* Zřetelný a jasně ohraničený rámeček */
+  border-radius: 24px;
+  background-color: #ffffff;
+  box-shadow: var(--shadow-search); /* Permanentní stín pro skvělou plasticitu a viditelnost */
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.search-box:hover {
+  border-color: #5f6368;
+  box-shadow: var(--shadow-search-hover);
+}
+
+.search-box:focus-within {
+  border-color: transparent;
+  box-shadow: 0 2px 10px rgba(32, 33, 36, 0.35);
+}
+
+/* Animace zatřesení při odeslání prázdného pole */
+@keyframes searchBoxShake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+.search-box-pulse {
+  border-color: var(--google-red) !important;
+  animation: searchBoxShake 0.4s ease;
+}
+
+/* Tlačítko lupy vlevo */
+.search-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  margin-right: 8px;
+  color: #5f6368; /* Tmavší, dobře viditelná barva */
+  border-radius: 50%;
+  transition: color 0.15s ease;
+}
+
+.search-icon-btn:hover {
+  color: var(--google-blue);
+}
+
+.search-icon-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.search-input {
+  flex: 1;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 16px;
+  color: var(--text-primary);
+}
+
+.search-icons-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 10px;
+}
+
+.search-action-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 50%;
+  color: var(--text-secondary);
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.search-action-icon:hover {
+  background-color: rgba(60, 64, 67, 0.08);
+  transform: scale(1.08);
+}
+
+.search-action-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Pulzující stav při aktivním hlasovém vyhledávání */
+@keyframes pulseMic {
+  0% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(234, 67, 53, 0.5)); }
+  50% { transform: scale(1.2); filter: drop-shadow(0 0 8px rgba(234, 67, 53, 0.9)); }
+  100% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(234, 67, 53, 0.5)); }
+}
+
+.search-action-icon.listening svg {
+  animation: pulseMic 1.2s infinite ease-in-out;
+}
+
+/* Tlačítka vyhledávání */
+.search-buttons {
+  margin-top: 26px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.btn-google {
+  background-color: var(--bg-btn);
+  border: 1px solid var(--border-light);
+  border-radius: 4px;
+  color: #3c4043;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0 16px;
+  height: 38px;
+  line-height: 36px;
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+}
+
+.btn-google:hover {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  background-color: #f1f3f4;
+  border-color: #dadce0;
+  color: #202124;
+}
+
+.btn-google:focus {
+  border-color: var(--google-blue);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+}
+
+/* Jazyková nabídka */
+.language-bar {
+  margin-top: 26px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.language-bar a {
+  margin: 0 4px;
+}
+
+/* --- Rozšířené vyhledávání (advanced.html) podle specifikace CS50 --- */
+.adv-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 36px;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.adv-logo-link {
+  display: flex;
+  align-items: center;
+}
+
+.adv-logo-link img {
+  height: 32px;
+  width: auto;
+}
+
+.adv-page-title-container {
+  padding: 24px 36px 16px 36px;
+}
+
+.adv-page-title {
+  color: var(--google-red);
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.adv-divider {
+  border: none;
+  height: 1px;
+  background-color: #ebebeb;
+  margin: 0 36px;
+}
+
+.adv-container {
+  max-width: 1140px;
+  padding: 20px 36px 40px 36px;
+}
+
+.adv-section-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333333;
+  margin-bottom: 24px;
+}
+
+.adv-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.adv-row {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+}
+
+.adv-label-col {
+  width: 220px;
+  color: #222222;
+  font-size: 13px;
+  padding-right: 16px;
+}
+
+.adv-input-col {
+  width: 320px;
+}
+
+.adv-input {
+  width: 100%;
+  height: 32px;
+  padding: 4px 8px;
+  border: 1.5px solid #aeb4b9;
+  border-radius: 2px;
+  font-size: 13px;
+  font-family: inherit;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.adv-input:focus {
+  border-color: #4d90fe;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.adv-help-col {
+  flex: 1;
+  padding-left: 20px;
+  color: #777777;
+  font-size: 12px;
+}
+
+.adv-help-col code {
+  font-family: monospace;
+  background-color: #f1f3f4;
+  padding: 2px 4px;
+  border-radius: 3px;
+  color: #333333;
+}
+
+/* Modré tlačítko zarovnané doleva dle CS50 specifikace */
+.adv-button-row {
+  display: flex;
+  margin-top: 16px;
+  margin-left: 220px; /* Zarovnání k levému okraji vstupních polí */
+}
+
+.btn-adv-blue {
+  background-color: #4d90fe;
+  background-image: linear-gradient(to bottom, #4d90fe, #4787ed);
+  border: 1px solid #3079ed;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  height: 32px;
+  padding: 0 14px;
+  border-radius: 2px;
+  cursor: pointer;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.btn-adv-blue:hover {
+  background-color: #357ae8;
+  background-image: linear-gradient(to bottom, #4d90fe, #357ae8);
+  border: 1px solid #2f5bb7;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.btn-adv-blue:focus {
+  border: 1px solid #000000;
+  outline: none;
+}
+
+/* --- Ukázka formulářových prvků (forms.html) --- */
+.forms-page-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 20px 60px 20px;
+  flex: 1;
+  width: 100%;
+}
+
+.forms-hero {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.forms-hero h1 {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.forms-hero p {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* Banner upozornění na nefunkčnost formulářů */
+.non-functional-alert {
+  background-color: #fef7e0;
+  border: 1px solid #f9ab00;
+  border-left: 5px solid #d93025;
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.alert-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.alert-content h2 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #b06000;
+  margin-bottom: 4px;
+}
+
+.alert-content p {
+  font-size: 13px;
+  color: #3c4043;
+}
+
+/* Karta formuláře ve stylu Google */
+.form-card {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-card);
+}
+
+.form-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f1f3f4;
+}
+
+.form-card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.badge-disabled {
+  background-color: #f1f3f4;
+  color: #5f6368;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 12px;
+  border: 1px solid #dadce0;
+  letter-spacing: 0.5px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-field label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.field-hint {
+  font-size: 11px;
+  color: #80868b;
+}
+
+/* Univerzální zašedlý a nefunkční stav pro formuláře */
+.disabled-form input,
+.disabled-form select,
+.disabled-form textarea,
+.disabled-form button,
+input:disabled,
+select:disabled,
+textarea:disabled,
+button:disabled {
+  background-color: #f1f3f4 !important;
+  color: #70757a !important;
+  border-color: #dadce0 !important;
+  cursor: not-allowed !important;
+  opacity: 0.75;
+}
+
+.form-control-disabled {
+  width: 100%;
+  height: 38px;
+  padding: 8px 12px;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+textarea.form-control-disabled {
+  height: auto;
+  min-height: 90px;
+  resize: vertical;
+}
+
+/* Skupiny checkboxů a radio tlačítek */
+.check-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 6px 0;
+}
+
+.check-radio-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: not-allowed;
+  user-select: none;
+}
+
+.check-radio-item input[type="checkbox"],
+.check-radio-item input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--google-blue);
+  cursor: not-allowed;
+}
+
+.check-radio-item label {
+  font-size: 13px;
+  color: #5f6368;
+  cursor: not-allowed;
+}
+
+/* Skupina tlačítek */
+.button-demo-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.btn-demo {
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  cursor: not-allowed;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-demo-primary {
+  background-color: var(--google-blue);
+  color: #ffffff;
+}
+
+.btn-demo-secondary {
+  background-color: #ffffff;
+  border-color: #dadce0;
+  color: var(--google-blue);
+}
+
+.btn-demo-danger {
+  background-color: var(--google-red);
+  color: #ffffff;
+}
+
+/* --- Spodní lišta (Patička - Footer) --- */
+.google-footer {
+  margin-top: auto;
+  background-color: var(--bg-footer);
+  font-size: 14px;
+  color: var(--text-subtle);
+  border-top: 1px solid #dadce0;
+}
+
+.footer-location {
+  padding: 13px 24px;
+  border-bottom: 1px solid #dadce0;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-location-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.footer-links-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10px 24px;
+  gap: 12px;
+}
+
+.footer-links-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: center;
+}
+
+.footer-links-group a {
+  color: var(--text-subtle);
+  text-decoration: none;
+  font-size: 13px;
+  transition: color 0.15s ease;
+}
+
+.footer-links-group a:hover {
+  color: var(--text-primary);
+  text-decoration: underline;
+}
+
+.footer-links-group a.highlight-link {
+  color: var(--google-blue);
+  font-weight: 500;
+}
+
+.footer-links-group a.highlight-link:hover {
+  color: var(--google-blue-hover);
+}
+
+/* --- Responzivní design pro menší obrazovky --- */
+@media (max-width: 768px) {
+  .adv-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .adv-label-col {
+    width: 100%;
+  }
+
+  .adv-input-col {
+    width: 100%;
+  }
+
+  .adv-help-col {
+    padding-left: 0;
+    margin-top: 4px;
+  }
+
+  .adv-button-row {
+    margin-left: 0;
+  }
+
+  .footer-links-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+  }
+
+  .footer-links-group {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .google-header {
+    padding: 10px 14px;
+    gap: 8px;
+  }
+
+  .search-buttons {
+    flex-direction: column;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .btn-google {
+    width: 100%;
+  }
+}
