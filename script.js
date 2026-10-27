@@ -1,6 +1,6 @@
 /**
  * Google Search Clone - Interaktivní skripty
- * Autor: Dominik Šrámek (https://dominiksramek.github.io)
+ * Autor: Dominik Šrámek (https://dominik-sramek.github.io)
  * Popis: Zprovoznění všech tlačítek (Google aplikace, hlasové vyhledávání, Google Lens, Zkusím mít štěstí)
  */
 

@@ -2,7 +2,7 @@
 
 **Projekt:** Frontend klon Google vyhledávače (PVA 3.D)  
 **Autor:** Dominik Šrámek  
-**Osobní portfolio:** [dominiksramek.github.io](https://dominiksramek.github.io)  
+**Osobní portfolio:** [dominik-sramek.github.io](https://dominik-sramek.github.io)  
 **Datum:** Říjen 2026  
 
 ---
@@ -43,7 +43,7 @@ Při tvorbě projektu byla využita asistence velkého jazykového modelu pro n�
 > - `image.html`: Vyhledávání obrázků odesílající na Google (parametry `q` a `tbm=isch`).
 > - `advanced.html`: Rozšířené vyhledávání podle CS50 s modrým tlačítkem zarovnaným doleva.
 > - `forms.html`: Stránka obsahující různé formulářové prvky jako input, select, checkbox, radio, textarea a button. Všechny tyto formuláře označ jako nefunkční, například zašednutím nebo poznámkou.
-> - Společné prvky: Na všechny stránky projektu přidej odkaz na validaci HTML a CSS pro danou stránku. Dále na všechny stránky přidej odkaz na soubor `citace.md` obsahující použité zdroje a prompty. Na všechny stránky také přidej odkaz na mé portfolio na doméně `dominiksramek.github.io`.
+> - Společné prvky: Na všechny stránky projektu přidej odkaz na validaci HTML a CSS pro danou stránku. Dále na všechny stránky přidej odkaz na soubor `citace.md` obsahující použité zdroje a prompty. Na všechny stránky také přidej odkaz na mé portfolio na doméně `dominik-sramek.github.io`.
 > - `styles.css`: Napodob co nejvěrněji vzhled skutečného Googlu.
 
 #### Doplňující požadavky na kvalitu a validaci:
